@@ -1,0 +1,1 @@
+# Benchmarking-Retrieval-Strategies-for-Cost-and-Latency-in-RAG-Systems
