@@ -1,0 +1,22 @@
+OPERATING SYSTEMS
+
+Overview
+An operating system (OS) manages hardware resources and provides services to application programs. Core responsibilities include process management, memory management, file systems, and I/O device management.
+
+Processes and Threads
+A process is a program in execution, with its own memory space (code, data, heap, stack). A thread is a lightweight unit of execution within a process; threads in the same process share memory but have their own stack and register state. Process-based concurrency gives strong isolation (a crash in one process does not directly affect another) but has higher creation and context-switch overhead because the OS must switch the full memory mapping. Thread-based concurrency is cheaper to create and switch between, and threads can communicate through shared memory without inter-process communication mechanisms, but this shared memory means a bug in one thread (e.g., a bad pointer write) can corrupt the whole process, and careful synchronization is required to avoid race conditions.
+
+CPU Scheduling
+The scheduler decides which ready process/thread runs next on the CPU. First-Come-First-Served (FCFS) is simple but can cause the "convoy effect" where short jobs wait behind long ones. Shortest Job First (SJF) minimizes average waiting time but requires knowing job length in advance and can starve long jobs. Round Robin gives each process a fixed time quantum and is the standard for time-sharing systems because it guarantees fairness and bounded response time. Priority scheduling assigns priorities and can lead to starvation of low-priority processes unless aging is used to gradually increase their priority.
+
+Synchronization
+When multiple threads access shared data, race conditions can occur. Mutexes (locks) ensure mutual exclusion so only one thread enters a critical section at a time. Semaphores generalize this with a counter, useful for managing a pool of limited resources. Condition variables let threads wait for a specific condition to become true. Deadlock occurs when a set of processes are each waiting for a resource held by another in the set, forming a cycle; the four necessary conditions for deadlock are mutual exclusion, hold-and-wait, no preemption, and circular wait — breaking any one of these prevents deadlock.
+
+Memory Management
+Virtual memory gives each process the illusion of a large, contiguous address space, independent of physical RAM, using page tables to map virtual addresses to physical frames. Paging divides memory into fixed-size pages/frames, avoiding external fragmentation but introducing internal fragmentation and requiring a page table (often multi-level to save space). When a page is not in RAM, a page fault occurs and the OS retrieves it from disk. Page replacement algorithms like Least Recently Used (LRU) and Clock decide which page to evict when memory is full.
+
+File Systems
+A file system organizes data on persistent storage into files and directories, tracking metadata (permissions, timestamps, size) and mapping files to physical disk blocks, often via inodes (Unix-style systems) which store block pointers rather than the file name directly, allowing hard links.
+
+I/O and Interrupts
+Interrupts let hardware devices signal the CPU asynchronously instead of the CPU polling devices continuously, which would waste CPU cycles. When an interrupt occurs, the CPU saves its current state, runs the appropriate interrupt handler, and resumes. DMA (Direct Memory Access) lets devices transfer data to/from memory without going through the CPU for every byte, freeing the CPU for other work during large transfers.

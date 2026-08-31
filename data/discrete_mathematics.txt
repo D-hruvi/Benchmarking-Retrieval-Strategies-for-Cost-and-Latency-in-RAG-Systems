@@ -1,0 +1,25 @@
+DISCRETE MATHEMATICS
+
+Overview
+Discrete mathematics covers mathematical structures that are fundamentally discrete (countable) rather than continuous, forming the theoretical backbone of computer science: logic, set theory, combinatorics, graph theory, and number theory.
+
+Propositional and Predicate Logic
+Propositional logic deals with statements that are true or false, combined with logical connectives (AND, OR, NOT, implication, biconditional). A truth table enumerates all possible truth values of a compound statement. Predicate logic extends this with quantifiers: the universal quantifier (for all) and the existential quantifier (there exists), allowing statements about properties of elements in a domain rather than just fixed propositions.
+
+Set Theory
+A set is an unordered collection of distinct elements. Basic operations include union, intersection, difference, and complement. Two sets have the same cardinality if there exists a bijection (a one-to-one, onto function) between them — this is how mathematicians formally compare the "sizes" of infinite sets, showing for example that the set of even numbers has the same cardinality as the set of all natural numbers.
+
+Relations and Functions
+A relation between two sets is a subset of their Cartesian product. A function is a relation where every input maps to exactly one output. Functions can be injective (one-to-one, no two inputs map to the same output), surjective (onto, every output is reached), or bijective (both).
+
+Combinatorics
+Combinatorics counts arrangements and selections. Permutations count ordered arrangements (n! ways to arrange n distinct items); combinations count unordered selections (n choose k = n! / (k!(n-k)!)). The pigeonhole principle states that if n items are placed into m containers with n > m, at least one container holds more than one item — a simple idea with surprisingly powerful applications in proving the existence of collisions, such as guaranteeing that a hash function mapping a larger set to a smaller set must have collisions.
+
+Graph Theory
+A graph's degree sequence, connectivity, and coloring properties are studied formally in discrete math before being applied algorithmically. A graph is bipartite if its vertices can be split into two sets with no edges within a set — this property can be tested via BFS/DFS coloring, connecting the theoretical definition directly to the traversal algorithms used in practice.
+
+Mathematical Induction
+Induction proves a statement holds for all natural numbers by proving a base case (usually n=0 or n=1) and an inductive step (if the statement holds for n, it holds for n+1). This proof technique underlies correctness proofs for many recursive algorithms, since a recursive algorithm's correctness for size n often depends on its correctness for smaller sizes.
+
+Number Theory Basics
+Modular arithmetic (working with remainders after division) underlies hashing, checksum algorithms, and cryptography. The Euclidean algorithm efficiently computes the greatest common divisor of two integers and is a building block for RSA public-key cryptography, which relies on the computational difficulty of factoring the product of two large primes.

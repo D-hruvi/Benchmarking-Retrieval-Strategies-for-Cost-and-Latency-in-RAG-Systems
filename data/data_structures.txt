@@ -1,0 +1,25 @@
+DATA STRUCTURES
+
+Overview
+Data structures define how data is organized, stored, and accessed so that operations on it are efficient. The choice of data structure directly affects the time and space complexity of an algorithm, which is why data structures and algorithms are taught together in most CSE curricula.
+
+Arrays and Linked Lists
+An array stores elements in contiguous memory, giving O(1) random access by index but O(n) insertion or deletion in the middle. A linked list stores elements as nodes connected by pointers, giving O(1) insertion/deletion at a known position but O(n) access by index since traversal is required. Doubly linked lists add a backward pointer to allow traversal in both directions at the cost of extra memory per node.
+
+Stacks and Queues
+A stack is a Last-In-First-Out (LIFO) structure supporting push and pop in O(1). It is used in function call management (the call stack), expression evaluation, and backtracking algorithms. A queue is a First-In-First-Out (FIFO) structure supporting enqueue and dequeue in O(1) when implemented with a circular buffer or linked list. Priority queues, usually implemented with a heap, dequeue the highest (or lowest) priority element instead of the oldest one.
+
+Trees
+A binary search tree (BST) keeps elements ordered so that the left subtree contains smaller values and the right subtree contains larger values, giving average O(log n) search, insert, and delete. Unbalanced BSTs can degrade to O(n) in the worst case, which is why self-balancing trees like AVL trees and Red-Black trees are used in practice — they perform rotations to keep the tree height close to log n. B-Trees generalize this idea for disk-based storage and are the backbone of most database indexes.
+
+Hash Tables
+A hash table maps keys to array indices using a hash function, giving average O(1) lookup, insertion, and deletion. When two keys map to the same index, a collision occurs. The two main resolution strategies are chaining (each bucket holds a linked list of entries) and open addressing (probing for the next free slot, e.g., linear probing or double hashing). A poor hash function or a high load factor increases collisions and degrades performance toward O(n).
+
+Heaps
+A binary heap is a complete binary tree satisfying the heap property: in a min-heap, every parent is smaller than or equal to its children (max-heap is the reverse). Heaps support O(log n) insertion and O(log n) removal of the top element, and O(n) construction from an unsorted array (heapify). They are the standard implementation for priority queues and are used in algorithms such as Dijkstra's shortest path and heap sort.
+
+Graphs
+A graph consists of vertices and edges, and can be represented as an adjacency matrix (O(V^2) space, O(1) edge lookup) or an adjacency list (O(V+E) space, better for sparse graphs). Graphs may be directed or undirected, and weighted or unweighted. Traversal algorithms — breadth-first search (BFS) and depth-first search (DFS) — form the basis for more advanced graph algorithms like shortest path, topological sorting, and cycle detection.
+
+Tries
+A trie (prefix tree) stores strings character by character along tree edges, allowing prefix search and autocomplete in O(m) time where m is the length of the query string, independent of how many strings are stored. This makes tries efficient for dictionary lookups, spell-checkers, and IP routing tables, at the cost of higher memory usage compared to a hash table for the same data.

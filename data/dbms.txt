@@ -1,0 +1,22 @@
+DATABASE MANAGEMENT SYSTEMS
+
+Overview
+A Database Management System (DBMS) stores, organizes, and provides controlled access to structured data. Relational DBMSs (RDBMS) like PostgreSQL and MySQL organize data into tables with rows and columns, related through keys.
+
+ACID Properties
+ACID stands for Atomicity, Consistency, Isolation, and Durability — the guarantees a transaction should provide. Atomicity means a transaction either fully completes or fully rolls back, with no partial effects. Consistency means a transaction takes the database from one valid state to another, respecting all defined constraints. Isolation means concurrent transactions do not interfere with each other's intermediate states, typically enforced through isolation levels (e.g., Read Committed, Serializable) that trade off strictness for performance. Durability means once a transaction commits, its effects survive even a crash, usually guaranteed via write-ahead logging.
+
+Normalization
+Normalization is the process of organizing tables to reduce data redundancy and avoid update anomalies. First Normal Form (1NF) requires atomic column values. Second Normal Form (2NF) removes partial dependencies on a composite key. Third Normal Form (3NF) removes transitive dependencies, so non-key columns depend only on the primary key. Normalization is important because without it, the same fact may be stored in multiple rows, so updating it in one place but not another leaves the database inconsistent — normalization enforces a "single source of truth" for each fact at the cost of requiring joins to reassemble related data.
+
+Indexing
+An index is an auxiliary data structure (commonly a B-Tree or B+Tree) that speeds up lookups on a column at the cost of extra storage and slower writes (since the index must also be updated). B+Trees are preferred over plain binary search trees for disk-based indexes because their high branching factor keeps the tree shallow, minimizing the number of slow disk reads needed to find a record — this directly builds on the same B-Tree balancing idea used in in-memory tree data structures, but tuned for disk block sizes rather than CPU cache lines.
+
+Transactions and Concurrency Control
+When multiple transactions run concurrently, anomalies can occur: dirty reads (reading uncommitted data), non-repeatable reads (a value changes between two reads in the same transaction), and phantom reads (new rows appear that match a query re-run in the same transaction). Concurrency control mechanisms include two-phase locking (2PL) and multi-version concurrency control (MVCC), which lets readers see a consistent snapshot without blocking writers.
+
+SQL Joins
+An INNER JOIN returns only rows with matches in both tables. A LEFT (OUTER) JOIN returns all rows from the left table, with NULLs for unmatched right-table columns. A RIGHT JOIN is the mirror of a left join. A FULL OUTER JOIN returns all rows from both tables, matched where possible.
+
+NoSQL and the CAP Theorem
+NoSQL databases (document stores like MongoDB, key-value stores like Redis, column-family stores like Cassandra) relax the strict schema and ACID guarantees of relational databases in exchange for horizontal scalability. This trade-off is formalized in distributed systems by the CAP theorem, which constrains what any distributed data store — relational or NoSQL — can guarantee once the network can partition.

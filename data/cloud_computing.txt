@@ -1,0 +1,22 @@
+CLOUD COMPUTING
+
+Overview
+Cloud computing delivers computing resources (servers, storage, databases, networking, software) over the internet on a pay-as-you-go basis, instead of organizations owning and maintaining physical hardware.
+
+Service Models
+Infrastructure as a Service (IaaS) provides raw virtualized computing resources (VMs, storage, networking) — the user manages the OS and everything above it (e.g., AWS EC2). Platform as a Service (PaaS) additionally manages the OS, runtime, and middleware, letting developers deploy code directly without managing servers (e.g., Render, Heroku). Software as a Service (SaaS) delivers a complete application over the internet, with the provider managing everything (e.g., Gmail, Salesforce). Each layer up the stack trades control for reduced operational burden.
+
+Elasticity and Scalability
+Elasticity — the ability to automatically scale resources up or down based on demand — is a defining benefit of cloud computing because it converts a fixed capital cost (buying enough servers for peak demand, which then sit idle most of the time) into a variable operating cost that tracks actual usage, and it removes the multi-week lead time of procuring physical hardware when demand spikes unexpectedly. Horizontal scaling adds more machines to handle load; vertical scaling adds more resources (CPU, RAM) to an existing machine, which eventually hits a hardware ceiling that horizontal scaling avoids.
+
+Containers and Orchestration
+Containers (e.g., Docker) package an application with its dependencies into a portable, isolated unit that runs consistently across environments, avoiding "it works on my machine" problems, while being far more lightweight than a full virtual machine since containers share the host OS kernel rather than virtualizing an entire OS. Kubernetes orchestrates containers at scale: scheduling them across a cluster of machines, restarting failed containers, and scaling the number of running instances based on load.
+
+Serverless Computing
+Serverless computing (e.g., AWS Lambda) lets developers deploy individual functions that run in response to events, with the cloud provider fully managing the underlying servers and automatically scaling from zero to many instances. Billing is typically per invocation and execution time rather than for continuously running infrastructure, which is cost-efficient for spiky or infrequent workloads but introduces "cold start" latency when a function hasn't run recently and a new instance must be initialized.
+
+Deployment Considerations for Free-Tier Hosting
+Free-tier PaaS offerings (such as Render's free tier) typically spin down inactive services after a period of no traffic to conserve shared resources, causing a noticeable delay (a "cold start") on the next request as the container restarts — this is an expected trade-off of free hosting, not a bug, and is generally addressed by upgrading to a paid tier with an always-on instance rather than by trying to prevent the spin-down on the free tier. Free tiers also typically impose tight memory ceilings, which matters when a deployed application loads memory-heavy components (like an embedding model and a vector index) at startup.
+
+Cloud Storage and Databases
+Cloud object storage (e.g., AWS S3) stores unstructured data (files, backups, model weights) at scale with high durability. Managed database services (e.g., AWS RDS) handle provisioning, backups, and patching for relational databases, reducing operational overhead compared to self-managed database servers.

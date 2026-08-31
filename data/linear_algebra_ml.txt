@@ -1,0 +1,22 @@
+LINEAR ALGEBRA FOR MACHINE LEARNING
+
+Overview
+Linear algebra provides the mathematical language for machine learning: data points are represented as vectors, datasets as matrices, and most ML operations (predictions, transformations, embeddings) are matrix operations.
+
+Vectors and Vector Spaces
+A vector is an ordered list of numbers representing a point or direction in space. Vector addition and scalar multiplication follow standard rules. The dot product of two vectors measures their alignment and is central to computing similarity — cosine similarity, widely used to compare embedding vectors in retrieval systems, is simply the dot product of two vectors normalized by their magnitudes, giving a score between -1 and 1 that is independent of vector length.
+
+Matrices and Matrix Operations
+A matrix is a rectangular array of numbers. Matrix multiplication combines two matrices, and is only defined when the number of columns in the first matches the number of rows in the second. In neural networks, a fully connected layer's forward pass is literally a matrix multiplication between the input vector and the layer's weight matrix, followed by adding a bias vector.
+
+Eigenvalues and Eigenvectors
+For a square matrix A, a vector v is an eigenvector if Av = λv for some scalar λ (the eigenvalue) — multiplying by A only scales v, without changing its direction. Eigenvalues and eigenvectors are central to Principal Component Analysis (PCA): the eigenvectors of a dataset's covariance matrix point in the directions of maximum variance, and projecting data onto the top eigenvectors reduces dimensionality while preserving as much variance as possible.
+
+Matrix Decompositions
+Singular Value Decomposition (SVD) factors any matrix into three matrices (U, Σ, V^T), and is used for dimensionality reduction, noise filtering, and as the mathematical basis of some recommendation systems (matrix factorization). Eigendecomposition only applies to square matrices, while SVD applies to any matrix, which is why SVD is more broadly used in practice.
+
+Norms and Distance
+The L2 norm (Euclidean norm) of a vector is the square root of the sum of squared components, representing its length. The L1 norm is the sum of absolute values. These norms underlie regularization terms in machine learning (L1/Lasso regularization encourages sparsity by penalizing the L1 norm of the weights; L2/Ridge regularization penalizes the L2 norm, shrinking weights smoothly toward zero without necessarily making them exactly zero) and distance metrics used in nearest-neighbor search and clustering.
+
+Gradients and Jacobians
+The gradient of a scalar-valued function is the vector of its partial derivatives with respect to each input, pointing in the direction of steepest increase — gradient descent moves in the opposite direction to minimize a loss function. The Jacobian generalizes this to vector-valued functions, and is the mathematical object underlying backpropagation, where the chain rule is applied across layers using Jacobians of each layer's transformation.

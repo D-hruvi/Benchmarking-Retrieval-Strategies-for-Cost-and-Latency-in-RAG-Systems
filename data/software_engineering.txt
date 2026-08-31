@@ -1,0 +1,22 @@
+SOFTWARE ENGINEERING
+
+Overview
+Software engineering applies engineering discipline to building software systems: requirements gathering, design, implementation, testing, deployment, and maintenance, usually organized under a process model.
+
+Process Models
+The Waterfall model executes phases sequentially (requirements, design, implementation, testing, deployment) with no overlap, which works for well-understood, stable requirements but struggles when requirements change mid-project. Agile methodologies (Scrum, Kanban) instead deliver working software in short iterations (sprints), gathering feedback continuously and adapting the plan, which suits projects with evolving requirements at the cost of less upfront predictability of final scope and timeline.
+
+Software Testing
+Unit tests verify a single function or class in isolation, usually with mocked dependencies, and should run fast so they can be run constantly during development. Integration tests verify that multiple components work together correctly. End-to-end (E2E) tests verify the whole system behaves correctly from the user's perspective. Test-Driven Development (TDD) writes tests before the implementation to clarify requirements and catch regressions immediately. Testing traditional deterministic software differs fundamentally from testing a machine learning model: traditional software has a specification with exact expected outputs for given inputs, so a test asserts equality; an ML model's output is probabilistic and only "approximately correct" even when working as intended, so ML testing instead relies on statistical evaluation (accuracy, precision/recall on a held-out test set), monitoring for data drift after deployment, and testing the surrounding pipeline code (data loading, feature transforms) with traditional unit tests even though the model itself cannot be unit-tested in the same equality-assertion way.
+
+Software Architecture
+A monolithic architecture packages the entire application as a single deployable unit, which is simple to develop and deploy initially but becomes harder to scale and maintain as the codebase grows, since all components share the same process and must be deployed together. A microservices architecture splits the application into independently deployable services communicating over the network (often REST or gRPC), each owning its own data store. This allows independent scaling and deployment of each service and lets teams use different tech stacks per service, but introduces distributed-systems complexity: network latency between services, the need for service discovery, and harder end-to-end debugging.
+
+Version Control
+Git is a distributed version control system where every clone contains the full project history. Branching lets developers work on features in isolation before merging into the main branch. Common workflows include feature branching (one branch per feature, merged via pull request) and trunk-based development (frequent small commits directly to a shared main branch, often behind feature flags).
+
+Design Patterns
+Design patterns are reusable solutions to common design problems. The Singleton pattern ensures a class has only one instance. The Factory pattern delegates object creation to a separate method/class, decoupling client code from concrete classes. The Observer pattern lets objects (observers) subscribe to state changes in another object (the subject), commonly used in event-driven UIs and pub/sub systems.
+
+Requirements and Documentation
+Functional requirements describe what the system should do (features, behaviors). Non-functional requirements describe qualities of the system (performance, security, scalability, availability). A well-documented API (e.g., via OpenAPI/Swagger specs) reduces integration friction between teams and services.

@@ -1,0 +1,22 @@
+OBJECT-ORIENTED PROGRAMMING
+
+Overview
+Object-oriented programming (OOP) organizes code around objects that bundle data (fields) and behavior (methods). Java, C++, and Python all support OOP, though with different tradeoffs around memory management and performance.
+
+The Four Pillars
+Encapsulation hides an object's internal state behind a public interface, exposing only what is necessary (e.g., private fields accessed via public getters/setters), which limits how a class can be misused and lets its internals change without breaking client code. Abstraction focuses on essential behavior while hiding implementation detail, often via abstract classes or interfaces. Inheritance lets a subclass reuse and extend a superclass's fields and methods, modeling an "is-a" relationship. Polymorphism lets objects of different classes be treated through a common interface — in Java this is typically achieved through method overriding (a subclass provides its own implementation of a superclass method) and interfaces.
+
+Classes vs Interfaces
+A class can extend only one other class in Java (single inheritance), but can implement multiple interfaces, which is how Java allows a form of multiple "type" inheritance without the diamond-inheritance ambiguity that multiple class inheritance can create. An abstract class can have both implemented and unimplemented (abstract) methods and can hold state; an interface (before Java 8) could only declare method signatures, though modern Java interfaces can include default method implementations.
+
+Memory Management
+Java uses automatic garbage collection: objects are allocated on the heap, and the garbage collector reclaims memory for objects no longer reachable from any live reference, removing the need for manual memory management but introducing occasional GC pauses. This is in contrast to languages like C/C++, where the programmer manually allocates and frees memory, giving more control but risking memory leaks or dangling pointers if done incorrectly.
+
+Exception Handling
+Java uses try-catch-finally blocks to handle exceptions. Checked exceptions must be declared in a method's signature or caught, forcing callers to consider failure cases; unchecked exceptions (RuntimeException and subclasses) do not require this. Proper exception handling separates error-handling logic from the main program flow.
+
+Generics
+Generics let classes and methods operate on typed parameters (e.g., List<String>) while still catching type errors at compile time rather than at runtime, avoiding the need for manual casting that was common before generics were introduced in Java 5.
+
+SOLID Principles
+The SOLID principles guide maintainable OOP design: Single Responsibility (a class should have one reason to change), Open/Closed (open for extension, closed for modification), Liskov Substitution (subclasses should be substitutable for their base class without breaking correctness), Interface Segregation (prefer many small interfaces over one large one), and Dependency Inversion (depend on abstractions, not concrete implementations).

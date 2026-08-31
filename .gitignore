@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Local result artifacts -- keep results.csv and RESULTS.md (they're
+# deliverables you want in the repo), but not the raw SQLite DBs, which
+# are just working state and can be regenerated from results.csv/reruns.
+results.db
+cache_store.db
+
+# Streamlit
+.streamlit/secrets.toml
+.DS_Store

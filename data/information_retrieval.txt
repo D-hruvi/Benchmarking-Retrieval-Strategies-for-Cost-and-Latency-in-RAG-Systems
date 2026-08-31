@@ -1,0 +1,22 @@
+INFORMATION RETRIEVAL
+
+Overview
+Information retrieval (IR) is the study of finding relevant documents or information from a large collection in response to a query. It is the foundation of search engines and, more recently, the "retrieval" half of Retrieval-Augmented Generation (RAG) systems.
+
+The Boolean and Vector Space Models
+The Boolean retrieval model treats a query as a logical expression (AND, OR, NOT) over terms, returning documents that exactly satisfy it, with no notion of ranking by relevance. The Vector Space Model instead represents both documents and queries as vectors in a high-dimensional term space (often TF-IDF weighted) and ranks documents by their similarity (typically cosine similarity) to the query vector, allowing partial matches and a meaningful ranking rather than a strict yes/no result.
+
+Inverted Indexes
+An inverted index is the core data structure behind efficient text search: instead of scanning every document for a query term (a brute-force O(number of documents × document length) approach), it maps each term to a list ("posting list") of the documents (and positions) where it appears, so a query can be answered by looking up each query term's posting list directly and intersecting or merging them — conceptually similar to using a hash table to avoid linear search, but specialized for text with additional structure like term frequencies and positions stored per posting.
+
+TF-IDF as a Baseline
+TF-IDF-based ranking remains a strong, cheap baseline in IR because it requires no training, is fast to compute, and works reasonably well when queries share exact vocabulary with relevant documents. Its main weakness is that it cannot capture semantic similarity — a query about "automobile" will not match a document that only uses the word "car" unless both terms happen to co-occur elsewhere, which is the core motivation for moving to dense embedding-based retrieval.
+
+Dense Retrieval and Embeddings
+Dense retrieval encodes both queries and documents into dense vector embeddings using a neural encoder (e.g., a sentence-transformer model), then retrieves documents whose embeddings are closest to the query embedding, typically via cosine similarity or dot product. Unlike TF-IDF, embeddings can capture semantic similarity even without exact word overlap, since the encoder is trained to place semantically related text close together in vector space. The tradeoff is computational cost: computing and comparing embeddings for a large corpus is far more expensive than looking up terms in an inverted index, which motivates hybrid approaches that use cheap keyword filtering to narrow candidates before expensive embedding comparison.
+
+Evaluation Metrics
+Precision@k measures the fraction of the top-k retrieved documents that are relevant. Recall@k measures the fraction of all relevant documents that appear in the top-k results. Mean Reciprocal Rank (MRR) rewards ranking the first relevant result as high as possible, useful when there is typically one clearly correct answer. NDCG (Normalized Discounted Cumulative Gain) accounts for graded relevance (not just relevant/irrelevant) and rewards placing highly relevant documents near the top of the ranking.
+
+Retrieval-Augmented Generation (RAG)
+RAG systems combine a retrieval step (finding relevant chunks of text from a knowledge base) with a generation step (an LLM producing an answer conditioned on the retrieved text), grounding the LLM's output in retrieved evidence rather than relying solely on what the model memorized during training. This reduces hallucination and allows the system's knowledge to be updated by changing the underlying document collection rather than retraining the model.

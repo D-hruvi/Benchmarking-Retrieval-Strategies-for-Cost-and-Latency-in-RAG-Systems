@@ -1,0 +1,22 @@
+DEEP LEARNING
+
+Overview
+Deep learning is a subfield of machine learning based on artificial neural networks with multiple layers ("deep" architectures), capable of automatically learning hierarchical feature representations directly from raw data (pixels, audio waveforms, text), reducing the need for hand-engineered features.
+
+Neural Network Basics
+A neural network consists of layers of neurons, each computing a weighted sum of its inputs plus a bias, followed by a non-linear activation function. Without a non-linear activation function, stacking multiple layers would collapse mathematically into a single linear transformation, no matter how many layers are used — the non-linearity is what allows deep networks to approximate complex, non-linear functions. Common activation functions include ReLU (Rectified Linear Unit, max(0, x), the most widely used in hidden layers of modern deep networks because it is cheap to compute and mitigates the vanishing gradient problem compared to sigmoid/tanh), sigmoid (squashes output to 0-1, common in binary classification output layers), and softmax (converts a vector of scores into a probability distribution, used in multi-class classification output layers).
+
+Backpropagation
+Backpropagation is the algorithm used to train neural networks: it computes the gradient of the loss function with respect to every weight in the network by applying the chain rule of calculus backward from the output layer to the input layer, reusing intermediate computations layer by layer instead of recomputing each weight's gradient independently. These gradients are then used by an optimizer (typically a variant of gradient descent, such as Adam or SGD with momentum) to update the weights and reduce the loss.
+
+Convolutional Neural Networks (CNNs)
+CNNs are designed for grid-like data such as images. A convolutional layer slides small learnable filters (kernels) across the input, detecting local patterns like edges in early layers and more complex shapes in deeper layers, while sharing the same filter weights across all spatial positions — this weight sharing drastically reduces the number of parameters compared to a fully connected layer processing the same image. Early influential CNN architectures such as LeNet used small (e.g., 5x5) convolutional kernels combined with pooling layers, which downsample feature maps (e.g., max pooling takes the maximum value in each local region) to reduce spatial dimensions and add a degree of translation invariance.
+
+Recurrent Neural Networks (RNNs) and LSTMs
+RNNs process sequential data by maintaining a hidden state that is updated at each time step, allowing information from earlier in the sequence to influence later outputs. Plain RNNs suffer from the vanishing gradient problem over long sequences — gradients shrink exponentially as they are backpropagated through many time steps, making it hard to learn long-range dependencies. LSTMs (Long Short-Term Memory networks) address this with gating mechanisms (input, forget, and output gates) that control what information is kept, discarded, or output at each step, allowing gradients to flow more stably over long sequences.
+
+Transformers and Attention
+The Transformer architecture replaced recurrence with a self-attention mechanism, which lets every position in a sequence directly attend to every other position in a single step, rather than passing information sequentially as RNNs do. This makes training far more parallelizable (all positions can be processed simultaneously) and better at capturing long-range dependencies. Transformers are the backbone of modern large language models.
+
+Training Deep Networks
+Deep networks are prone to overfitting given their large number of parameters, so techniques like dropout, batch normalization (normalizing layer inputs to stabilize and speed up training), data augmentation, and early stopping (halting training when validation loss stops improving) are commonly used. Transfer learning — taking a model pretrained on a large dataset and fine-tuning it on a smaller, task-specific dataset — is standard practice when training data is limited, since the pretrained model has already learned generally useful low-level features.

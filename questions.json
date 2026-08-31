@@ -1,0 +1,158 @@
+[
+  {
+    "id": "q01",
+    "question": "What is the time complexity of binary search on a sorted array?",
+    "type": "exact_fact",
+    "relevant_docs": ["algorithms.txt"]
+  },
+  {
+    "id": "q02",
+    "question": "What does ACID stand for in the context of database transactions?",
+    "type": "exact_fact",
+    "relevant_docs": ["dbms.txt"]
+  },
+  {
+    "id": "q03",
+    "question": "What is the default port number used by HTTPS?",
+    "type": "exact_fact",
+    "relevant_docs": ["computer_networks.txt"]
+  },
+  {
+    "id": "q04",
+    "question": "What is the primary role of a compiler's lexical analyzer?",
+    "type": "exact_fact",
+    "relevant_docs": ["compiler_design.txt"]
+  },
+  {
+    "id": "q05",
+    "question": "Which activation function is most commonly used in the hidden layers of modern deep neural networks, and why is it preferred over sigmoid?",
+    "type": "exact_fact",
+    "relevant_docs": ["deep_learning.txt"]
+  },
+  {
+    "id": "q06",
+    "question": "What is the formula for Bayes' theorem?",
+    "type": "exact_fact",
+    "relevant_docs": ["probability_statistics.txt"]
+  },
+  {
+    "id": "q07",
+    "question": "What is the main functional difference between TCP and UDP?",
+    "type": "exact_fact",
+    "relevant_docs": ["computer_networks.txt"]
+  },
+  {
+    "id": "q08",
+    "question": "What is the standard algorithm used for finding the shortest path in a weighted graph with non-negative edge weights?",
+    "type": "exact_fact",
+    "relevant_docs": ["algorithms.txt"]
+  },
+  {
+    "id": "q09",
+    "question": "What is a trie and what operation is it primarily optimized for?",
+    "type": "exact_fact",
+    "relevant_docs": ["data_structures.txt"]
+  },
+  {
+    "id": "q10",
+    "question": "What is the pigeonhole principle?",
+    "type": "exact_fact",
+    "relevant_docs": ["discrete_mathematics.txt"]
+  },
+  {
+    "id": "q11",
+    "question": "Why is normalization important in relational database design?",
+    "type": "conceptual",
+    "relevant_docs": ["dbms.txt"]
+  },
+  {
+    "id": "q12",
+    "question": "Explain why overfitting happens in a machine learning model and what it means for the model's performance.",
+    "type": "conceptual",
+    "relevant_docs": ["machine_learning.txt"]
+  },
+  {
+    "id": "q13",
+    "question": "What are the trade-offs between process-based concurrency and thread-based concurrency in an operating system?",
+    "type": "conceptual",
+    "relevant_docs": ["operating_systems.txt"]
+  },
+  {
+    "id": "q14",
+    "question": "Why is TF-IDF still considered a useful baseline in information retrieval despite its limitations?",
+    "type": "conceptual",
+    "relevant_docs": ["information_retrieval.txt"]
+  },
+  {
+    "id": "q15",
+    "question": "What are the main advantages and disadvantages of a microservices architecture compared to a monolith?",
+    "type": "conceptual",
+    "relevant_docs": ["software_engineering.txt"]
+  },
+  {
+    "id": "q16",
+    "question": "Why is dynamic programming preferred over naive recursion for problems like the 0/1 knapsack problem?",
+    "type": "conceptual",
+    "relevant_docs": ["algorithms.txt"]
+  },
+  {
+    "id": "q17",
+    "question": "What role does regularization play in preventing overfitting, and how do L1 and L2 regularization differ?",
+    "type": "conceptual",
+    "relevant_docs": ["machine_learning.txt"]
+  },
+  {
+    "id": "q18",
+    "question": "Why is elasticity considered a defining benefit of cloud computing?",
+    "type": "conceptual",
+    "relevant_docs": ["cloud_computing.txt"]
+  },
+  {
+    "id": "q19",
+    "question": "Why did attention mechanisms represent a significant improvement over earlier sequence-to-sequence models in NLP?",
+    "type": "conceptual",
+    "relevant_docs": ["nlp.txt"]
+  },
+  {
+    "id": "q20",
+    "question": "How does a hash table's approach to handling collisions compare to how an inverted index in information retrieval avoids scanning every document for a search term?",
+    "type": "multi_doc",
+    "relevant_docs": ["data_structures.txt", "information_retrieval.txt"]
+  },
+  {
+    "id": "q21",
+    "question": "How does the CAP theorem in distributed systems relate to the ACID consistency guarantees covered in database systems?",
+    "type": "multi_doc",
+    "relevant_docs": ["distributed_systems.txt", "dbms.txt"]
+  },
+  {
+    "id": "q22",
+    "question": "Compare gradient descent as used in general machine learning with backpropagation in deep learning -- how are the two related?",
+    "type": "multi_doc",
+    "relevant_docs": ["machine_learning.txt", "deep_learning.txt"]
+  },
+  {
+    "id": "q23",
+    "question": "How does TCP's congestion control mechanism differ conceptually from the consensus algorithms used to keep replicated data consistent in distributed systems?",
+    "type": "multi_doc",
+    "relevant_docs": ["computer_networks.txt", "distributed_systems.txt"]
+  },
+  {
+    "id": "q24",
+    "question": "How does testing a traditional software system differ from evaluating a machine learning model, based on how each field approaches correctness?",
+    "type": "multi_doc",
+    "relevant_docs": ["software_engineering.txt", "machine_learning.txt"]
+  },
+  {
+    "id": "q25",
+    "question": "How does asymmetric cryptography used in cybersecurity relate to how HTTPS secures communication at the network level?",
+    "type": "multi_doc",
+    "relevant_docs": ["cybersecurity.txt", "computer_networks.txt"]
+  },
+  {
+    "id": "q26",
+    "question": "How does the greedy algorithm paradigm relate to greedy feature selection heuristics used in machine learning?",
+    "type": "multi_doc",
+    "relevant_docs": ["algorithms.txt", "machine_learning.txt"]
+  }
+]

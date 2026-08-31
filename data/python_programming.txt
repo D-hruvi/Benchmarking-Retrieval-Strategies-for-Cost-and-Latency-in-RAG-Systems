@@ -1,0 +1,22 @@
+PYTHON PROGRAMMING
+
+Overview
+Python is a dynamically typed, interpreted, high-level language widely used in AI/ML, web development, and scripting because of its readable syntax and large ecosystem of libraries.
+
+Data Types and Structures
+Python's built-in collections include lists (mutable, ordered), tuples (immutable, ordered), dictionaries (mutable key-value maps, implemented as hash tables), and sets (mutable, unordered, unique elements, also hash-based). Because dictionaries and sets are hash-table based, average-case lookup is O(1), same as the general hash table data structure used across computer science, just with Python-specific implementation details (open addressing with a randomized probe sequence).
+
+Functions and Closures
+Functions in Python are first-class objects — they can be passed as arguments, returned from other functions, and assigned to variables. A closure occurs when an inner function captures variables from its enclosing scope, keeping them alive even after the outer function returns. Decorators use this closure mechanism to wrap a function with additional behavior (e.g., logging, caching, timing) without modifying its source code.
+
+The Global Interpreter Lock (GIL)
+CPython (the standard Python implementation) has a Global Interpreter Lock that allows only one thread to execute Python bytecode at a time, even on multi-core machines. This means CPU-bound multithreaded Python code does not get true parallelism, though I/O-bound code still benefits from threading since the GIL is released during I/O waits. For CPU-bound parallelism, Python programs typically use the multiprocessing module (separate processes, each with its own interpreter and memory space, sidestepping the GIL) instead of threads.
+
+List Comprehensions and Generators
+List comprehensions provide a concise syntax for building lists (e.g., [x**2 for x in range(10)]), typically faster than an equivalent explicit for-loop due to internal optimizations. Generators (using yield) produce values lazily, one at a time, without holding the entire sequence in memory — useful for processing large or infinite streams of data.
+
+Virtual Environments and Packaging
+Python virtual environments (venv, conda) isolate a project's dependencies from the system Python installation and from other projects, preventing version conflicts between packages required by different projects. requirements.txt (with pinned versions) or a pyproject.toml records exact dependency versions so a project's environment can be reproduced elsewhere.
+
+Common Libraries for AI/ML
+NumPy provides fast array operations backed by C, avoiding Python's per-element interpreter overhead for numerical computation. Pandas provides DataFrame structures for tabular data manipulation. scikit-learn provides classical machine learning algorithms with a consistent fit/predict API. PyTorch and TensorFlow provide tensor operations with automatic differentiation for building and training neural networks.

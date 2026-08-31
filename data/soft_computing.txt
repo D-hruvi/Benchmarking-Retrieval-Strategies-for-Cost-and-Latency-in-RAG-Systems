@@ -1,0 +1,22 @@
+SOFT COMPUTING
+
+Overview
+Soft computing is a collection of computational techniques tolerant of imprecision, uncertainty, and partial truth, in contrast to "hard computing" which requires precise, exact models. It includes fuzzy logic, genetic algorithms, and (overlapping with deep learning) artificial neural networks.
+
+Fuzzy Logic
+Classical (Boolean) logic requires a statement to be exactly true or false. Fuzzy logic instead allows degrees of truth between 0 and 1 via membership functions — for example, "hot" is not a hard cutoff at a specific temperature but a gradual membership function that increases smoothly as temperature rises. Fuzzy inference systems use fuzzy if-then rules (e.g., "if temperature is high and humidity is high, then fan speed is fast") to make decisions in systems where precise mathematical models are unavailable or impractical, such as consumer appliance control (washing machines, air conditioners) and certain industrial control systems.
+
+Genetic Algorithms
+Genetic algorithms (GAs) are optimization techniques inspired by biological evolution. A population of candidate solutions is evaluated using a fitness function; the fittest solutions are more likely to be selected for "reproduction," combined via crossover (mixing parts of two parent solutions) and randomly altered via mutation, generation after generation, gradually improving the population toward better solutions. GAs are useful for optimization problems where the search space is too large or poorly understood for gradient-based methods, and where the objective function does not need to be differentiable, unlike gradient descent which explicitly requires computing derivatives of the objective.
+
+Swarm Intelligence
+Swarm intelligence techniques (e.g., Particle Swarm Optimization, Ant Colony Optimization) are inspired by collective behavior in nature — flocks, colonies, swarms — where simple local interactions between many agents produce effective global optimization behavior without any central controller. Like genetic algorithms, these are population-based, derivative-free optimization methods, useful when the objective landscape is complex, noisy, or not smoothly differentiable.
+
+Neural Networks in Soft Computing
+Artificial neural networks are often grouped under soft computing because they learn approximate, distributed representations from data rather than following exact symbolic rules, tolerating noisy and imprecise input in a way that resembles fuzzy logic's tolerance for imprecision, even though the underlying mathematics (gradient-based optimization of continuous weights) is quite different from fuzzy logic's rule-based reasoning.
+
+Hybrid Systems
+Neuro-fuzzy systems combine neural networks' ability to learn from data with fuzzy logic's interpretable rule structure, aiming to get the best of both: the adaptability of learning-based systems and the human-readable reasoning of rule-based systems. These hybrid approaches are common in control systems where both adaptability and some degree of explainability are required, such as industrial process control.
+
+Applications
+Soft computing techniques are widely used where traditional precise mathematical modeling is difficult: appliance control, image processing (noise removal, edge enhancement under fuzzy rules), scheduling and routing optimization via genetic algorithms, and hyperparameter tuning of machine learning models via evolutionary or swarm-based search when the objective is expensive to evaluate and gradients aren't available.

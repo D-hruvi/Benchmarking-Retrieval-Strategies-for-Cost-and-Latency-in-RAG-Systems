@@ -1,0 +1,22 @@
+PROBABILITY AND STATISTICS
+
+Overview
+Probability and statistics quantify uncertainty and let us draw conclusions from data — foundational for machine learning, which is fundamentally about learning patterns from noisy, incomplete data.
+
+Basic Probability
+Probability of an event ranges from 0 (impossible) to 1 (certain). Two events are independent if the occurrence of one does not affect the probability of the other. Conditional probability P(A|B) is the probability of A given that B has occurred.
+
+Bayes' Theorem
+Bayes' theorem relates conditional probabilities: P(A|B) = P(B|A) * P(A) / P(B). It lets us update a prior belief P(A) into a posterior belief P(A|B) after observing evidence B. This is the mathematical foundation of the Naive Bayes classifier, which assumes features are conditionally independent given the class label, and of Bayesian approaches to machine learning more generally, where model parameters themselves are treated as random variables with a prior distribution that gets updated by observed data.
+
+Random Variables and Distributions
+A random variable maps outcomes of a random process to numbers. The normal (Gaussian) distribution is the most common continuous distribution, characterized by its mean and variance, and appears frequently due to the Central Limit Theorem, which states that the sum (or average) of many independent random variables tends toward a normal distribution regardless of the original distribution. The Bernoulli distribution models a single binary outcome (success/failure), and the Binomial distribution models the count of successes over multiple independent Bernoulli trials.
+
+Expectation, Variance, and Covariance
+The expected value (mean) of a random variable is its long-run average. Variance measures spread around the mean; standard deviation is its square root, in the same units as the original data. Covariance measures how two variables change together — positive covariance means they tend to increase together, negative means one increases as the other decreases. Correlation is covariance normalized to a range of -1 to 1, making it comparable across variable pairs with different scales.
+
+Hypothesis Testing
+Hypothesis testing evaluates whether observed data provides enough evidence to reject a null hypothesis (typically "no effect" or "no difference"). The p-value is the probability of observing data at least as extreme as what was seen, assuming the null hypothesis is true; a small p-value (conventionally below 0.05) is treated as evidence against the null hypothesis, though this threshold is a convention, not a law of nature, and p-values are frequently misinterpreted as "the probability the null hypothesis is true," which they are not.
+
+Statistics in ML Evaluation
+Precision is the fraction of predicted-positive instances that are actually positive; recall is the fraction of actual-positive instances that were correctly predicted. There is typically a trade-off between them, visualized with a precision-recall curve. The F1 score is the harmonic mean of precision and recall, useful when a single summary number is needed and both false positives and false negatives matter.

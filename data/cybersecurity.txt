@@ -1,0 +1,22 @@
+CYBERSECURITY
+
+Overview
+Cybersecurity protects systems, networks, and data from unauthorized access, disruption, or damage. It spans cryptography, network security, application security, and security operations.
+
+Symmetric vs Asymmetric Cryptography
+Symmetric cryptography (e.g., AES) uses the same key for encryption and decryption, and is computationally fast, but requires both parties to already share the secret key securely, which is a bootstrapping problem when two parties have never communicated before. Asymmetric (public-key) cryptography (e.g., RSA) uses a mathematically linked key pair: a public key (shared openly, used to encrypt or verify) and a private key (kept secret, used to decrypt or sign). This solves the key-distribution problem — anyone can encrypt a message using the recipient's public key, but only the holder of the private key can decrypt it — at the cost of being far more computationally expensive than symmetric encryption for large amounts of data. In practice, protocols like TLS use asymmetric cryptography only to securely exchange a symmetric session key, then switch to fast symmetric encryption for the actual data, combining the security benefit of asymmetric key exchange with the speed of symmetric encryption.
+
+Hashing in Security
+Cryptographic hash functions (e.g., SHA-256) take an input of any size and produce a fixed-size output, with the property that it should be computationally infeasible to find two different inputs producing the same output (collision resistance) or to reverse the hash to recover the original input (preimage resistance). This differs from hash functions used in data structures like hash tables, where speed and even distribution matter far more than resistance to deliberate attack. Password storage uses cryptographic hashing (with a per-user random "salt" added before hashing) rather than storing passwords in plaintext, so that even if a database is breached, recovering the original passwords requires brute-forcing each hash individually rather than just reading them off.
+
+Digital Signatures and Certificates
+A digital signature uses the signer's private key to sign data (typically a hash of the data, for efficiency), and anyone with the corresponding public key can verify the signature, confirming both the signer's identity and that the data was not altered. Digital certificates (issued by Certificate Authorities) bind a public key to an identity, which is how HTTPS/TLS lets a browser verify it is really talking to the claimed website rather than an impersonator.
+
+Common Attack Types
+SQL injection exploits improperly sanitized user input in database queries to execute unintended commands, mitigated with parameterized queries/prepared statements. Cross-Site Scripting (XSS) injects malicious scripts into web pages viewed by other users. Man-in-the-middle attacks intercept communication between two parties, which encrypted, authenticated channels like TLS are specifically designed to prevent. Denial-of-Service (DoS) and Distributed Denial-of-Service (DDoS) attacks overwhelm a system with traffic to make it unavailable to legitimate users.
+
+Authentication and Authorization
+Authentication verifies who a user is (e.g., password, biometric, multi-factor authentication combining something you know, have, and are). Authorization determines what an authenticated user is allowed to do. These are distinct concerns: a system can correctly authenticate a user's identity while still incorrectly authorizing them to access resources they shouldn't.
+
+Security in the Software Lifecycle
+Secure coding practices, regular dependency vulnerability scanning, and penetration testing (simulating attacks to find weaknesses before real attackers do) are standard parts of a mature software development lifecycle, reflecting the principle that security is more effective and cheaper when built in from the start rather than patched on after deployment.

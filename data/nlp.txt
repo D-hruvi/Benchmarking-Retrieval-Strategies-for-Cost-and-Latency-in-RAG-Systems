@@ -1,0 +1,22 @@
+NATURAL LANGUAGE PROCESSING
+
+Overview
+Natural Language Processing (NLP) is the field concerned with enabling computers to process, understand, and generate human language. It combines linguistics with machine learning and, increasingly, deep learning.
+
+Text Preprocessing
+Tokenization splits text into smaller units (words, subwords, or characters) for processing. Stopword removal filters out very common words (e.g., "the", "is") that carry little distinguishing meaning for many tasks. Stemming crudely chops word endings to reduce a word to a root form (e.g., "running" to "run"), while lemmatization uses vocabulary and morphological analysis to return the proper dictionary base form, generally more accurate but more computationally expensive than stemming.
+
+Text Representation
+Bag-of-Words represents a document as an unordered count of its words, discarding grammar and word order. TF-IDF (Term Frequency-Inverse Document Frequency) improves on raw word counts by weighting a word's importance: term frequency rewards words that appear often in a document, while inverse document frequency downweights words that appear in many documents across the corpus (like "the"), since common words carry little information about what makes a specific document distinctive. Word embeddings (Word2Vec, GloVe) instead represent words as dense, low-dimensional vectors learned so that semantically similar words end up close together in vector space, capturing meaning that sparse bag-of-words representations cannot.
+
+Language Models
+A language model estimates the probability of a sequence of words, traditionally via n-gram statistics (counting how often word sequences occur) and more recently via neural networks. Modern large language models (LLMs) are built on the Transformer architecture and trained on massive text corpora to predict the next token given previous context, and this simple next-token prediction objective, at sufficient scale, gives rise to capabilities like translation, summarization, and question answering.
+
+Attention in NLP
+Attention mechanisms let a model weigh the relevance of different words in the input when producing each part of the output, rather than compressing the entire input into a single fixed-size vector as older sequence-to-sequence models did. This is significant because it solves the "information bottleneck" of earlier encoder-decoder RNN models, particularly for long sequences, and it also provides some interpretability, since attention weights show which input tokens the model focused on for a given output.
+
+Named Entity Recognition and POS Tagging
+Part-of-speech (POS) tagging labels each word with its grammatical role (noun, verb, adjective, etc.). Named Entity Recognition (NER) identifies and classifies spans of text into predefined categories such as person, organization, and location. Both are typically framed as sequence labeling problems, historically solved with Hidden Markov Models or Conditional Random Fields, now commonly solved with fine-tuned transformer models.
+
+Evaluation Metrics
+BLEU score evaluates machine translation quality by comparing n-gram overlap between the generated translation and reference translations. Perplexity measures how well a language model predicts a sample of text — lower perplexity indicates the model assigns higher probability to the actual text, meaning it is less "surprised" by it.

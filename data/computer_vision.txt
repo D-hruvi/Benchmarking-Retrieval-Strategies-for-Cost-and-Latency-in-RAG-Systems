@@ -1,0 +1,25 @@
+COMPUTER VISION
+
+Overview
+Computer vision enables machines to interpret and understand visual information from images and video. Modern computer vision is dominated by deep learning approaches, particularly Convolutional Neural Networks (CNNs) and, increasingly, vision transformers.
+
+Image Representation
+A digital image is represented as a grid of pixels; a grayscale image is a 2D matrix of intensity values, while a color image typically has three channels (Red, Green, Blue), represented as a 3D array (height x width x channels). Image resolution and the number of channels directly determine the size of the input tensor fed into a vision model.
+
+Classic Image Processing
+Edge detection algorithms (e.g., the Sobel operator, Canny edge detector) identify boundaries where pixel intensity changes sharply, historically used as a hand-engineered preprocessing step before machine learning models could learn edge detection automatically via early convolutional layers. Image filtering (blurring, sharpening) applies a convolution kernel across the image, mathematically the same sliding-window operation that convolutional neural network layers learn automatically, except classic filters use fixed, hand-designed kernels rather than learned ones.
+
+Object Detection and Segmentation
+Image classification assigns a single label to an entire image. Object detection goes further, localizing multiple objects with bounding boxes and classifying each (e.g., YOLO, Faster R-CNN). Semantic segmentation classifies every pixel into a category, without distinguishing between separate instances of the same class. Instance segmentation goes further still, distinguishing individual object instances at the pixel level (e.g., Mask R-CNN).
+
+CNN Architectures for Vision
+Classic CNN architectures progressively increase depth and sophistication: LeNet (1990s, simple digit recognition), AlexNet (2012, demonstrated deep CNNs could dramatically outperform prior methods on ImageNet), VGGNet (very deep, uniform small 3x3 kernels stacked repeatedly), ResNet (introduced residual/skip connections that let gradients flow directly across many layers, enabling networks over 100 layers deep without the vanishing gradient problem that plagued earlier very deep networks).
+
+Vision Transformers
+Vision Transformers (ViT) apply the Transformer architecture — originally developed for NLP — to images, by splitting an image into fixed-size patches, treating each patch like a "token," and processing the sequence of patch embeddings with self-attention. This lets each patch attend to every other patch directly, in contrast with a CNN's local receptive field which only sees nearby pixels directly and needs many stacked layers to build up a global view of the image.
+
+Applications
+Common computer vision applications include facial recognition, optical character recognition (OCR), medical image analysis (tumor detection in scans), autonomous vehicle perception (lane detection, pedestrian detection), and industrial defect detection on manufacturing lines.
+
+Data Augmentation
+Because labeled image data is expensive to collect, data augmentation artificially expands the training set by applying transformations (rotation, flipping, cropping, color jitter) that preserve the label while giving the model more visual variety to learn from, reducing overfitting.

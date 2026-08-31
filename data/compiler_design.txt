@@ -1,0 +1,22 @@
+COMPILER DESIGN
+
+Overview
+A compiler translates source code written in a high-level language into a lower-level target language (often machine code or bytecode), while an interpreter executes source code more directly without producing a standalone translated program. Compilation happens in a well-defined pipeline of phases.
+
+Lexical Analysis
+The lexical analyzer (lexer/scanner) is the compiler's first phase: it reads the raw source code character by character and groups characters into tokens (keywords, identifiers, literals, operators, punctuation), discarding whitespace and comments. Its primary role is to convert an unstructured stream of characters into a structured stream of tokens that the next phase (parsing) can work with, typically implemented using finite automata derived from regular expressions describing each token type.
+
+Syntax Analysis (Parsing)
+The parser takes the token stream and builds a parse tree (or abstract syntax tree, AST) representing the program's grammatical structure, according to the language's formal grammar (typically context-free grammar). Top-down parsers (e.g., recursive descent) build the tree from the root downward; bottom-up parsers (e.g., LR parsers) build it from the leaves upward. A syntax error is reported when the token stream does not match any valid derivation of the grammar.
+
+Semantic Analysis
+Semantic analysis checks that the syntactically valid program also makes sense according to the language's rules that go beyond grammar — type checking (ensuring operations are applied to compatible types), scope resolution (ensuring variables are declared before use and resolving which declaration a name refers to), and other static checks. This phase typically builds and uses a symbol table tracking each identifier's type, scope, and other attributes.
+
+Intermediate Code Generation and Optimization
+After semantic analysis, the compiler typically generates an intermediate representation (IR) that is more abstract than machine code but more concrete than the source language, making the compiler easier to retarget to different hardware architectures (only the final code-generation phase needs to change). Optimization passes on the IR improve performance without changing program behavior: common techniques include constant folding (evaluating constant expressions at compile time), dead code elimination (removing code whose results are never used), and loop optimizations (e.g., moving loop-invariant computations outside the loop).
+
+Code Generation
+The final phase translates the optimized intermediate representation into target machine code (or bytecode, for languages like Java that compile to a virtual machine instruction set). This phase handles register allocation (deciding which values live in the limited set of CPU registers versus memory) and instruction selection specific to the target architecture.
+
+Compiled vs Interpreted Languages
+Compiled languages (C, C++, Rust) are translated fully to machine code ahead of time, generally giving faster execution since no translation happens at runtime. Interpreted languages (traditional Python, JavaScript in early engines) are executed line-by-line by an interpreter at runtime, giving more flexibility (e.g., easier dynamic typing, REPL-driven development) at some cost to raw execution speed. Many modern languages blur this line: Java compiles to bytecode that is then interpreted (or JIT-compiled) by the JVM, and modern JavaScript engines use Just-In-Time (JIT) compilation to translate hot code paths to machine code at runtime for near-compiled performance while keeping the interpreter's flexibility for the rest.

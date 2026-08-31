@@ -1,0 +1,22 @@
+COMPUTER NETWORKS
+
+Overview
+Computer networks connect devices so they can exchange data. The OSI model describes networking in seven layers (Physical, Data Link, Network, Transport, Session, Presentation, Application); the TCP/IP model used in practice collapses this into four layers (Link, Internet, Transport, Application).
+
+Transport Layer: TCP vs UDP
+TCP (Transmission Control Protocol) is connection-oriented and reliable: it establishes a connection via a three-way handshake (SYN, SYN-ACK, ACK), guarantees in-order delivery, retransmits lost packets, and applies flow control and congestion control. This reliability adds overhead and latency. UDP (User Datagram Protocol) is connectionless and does not guarantee delivery, ordering, or retransmission — it simply sends packets ("datagrams") with minimal overhead. UDP is preferred for applications where speed matters more than perfect reliability, such as video streaming, VoIP, and DNS queries, while TCP is used where correctness matters, such as file transfer, web browsing (HTTP), and email.
+
+TCP Congestion Control
+TCP dynamically adjusts how much data it sends based on network conditions to avoid overwhelming the network. It uses a congestion window that grows via "slow start" (exponential growth until a threshold), then "congestion avoidance" (linear growth), and shrinks sharply when packet loss is detected (interpreted as a sign of congestion). This is a purely end-to-end, best-effort mechanism — TCP has no global view of the network and infers congestion indirectly from timeouts or duplicate acknowledgments, which is conceptually different from the explicit coordination protocols (like consensus algorithms) used to keep replicated data consistent in distributed systems.
+
+Network Layer
+IP (Internet Protocol) handles addressing and routing packets across networks. IPv4 uses 32-bit addresses (about 4.3 billion total), which have run out under classical allocation, driving adoption of IPv6 with 128-bit addresses. Routers use routing tables and protocols (e.g., OSPF, BGP) to decide the next hop for a packet toward its destination.
+
+Application Layer and Ports
+Application-layer protocols run on top of TCP or UDP and are identified by well-known port numbers. HTTP uses port 80 by default; HTTPS (HTTP over TLS/SSL) uses port 443 by default. DNS uses port 53. SMTP (email sending) uses port 25. SSH uses port 22. FTP uses ports 20/21.
+
+Security in Networking
+HTTPS secures HTTP by wrapping it in TLS (Transport Layer Security), which provides encryption, integrity, and authentication. The TLS handshake uses asymmetric (public-key) cryptography to securely agree on a shared symmetric session key, which is then used for fast encryption of the actual data — this hybrid approach is used because asymmetric cryptography is computationally expensive for bulk data, while symmetric cryptography is fast but needs a securely shared key first.
+
+Switching and Addressing
+A switch operates at the data link layer and forwards frames based on MAC addresses, building a MAC address table by observing traffic. A router operates at the network layer and forwards packets based on IP addresses across different networks. NAT (Network Address Translation) allows multiple devices on a private network to share a single public IP address by rewriting packet headers.

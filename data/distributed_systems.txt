@@ -1,0 +1,22 @@
+DISTRIBUTED SYSTEMS
+
+Overview
+A distributed system is a collection of independent computers that appear to users as a single coherent system, communicating and coordinating over a network. Distributed systems introduce challenges absent in single-machine systems: partial failures, network delays, and the impossibility of perfectly synchronized clocks.
+
+The CAP Theorem
+The CAP theorem states that a distributed data store can provide at most two of the following three guarantees simultaneously: Consistency (every read receives the most recent write or an error), Availability (every request receives a non-error response, without guarantee it contains the most recent write), and Partition tolerance (the system continues operating despite network partitions between nodes). Since network partitions are a real possibility in any distributed system and must be tolerated, the practical choice in the presence of a partition is between consistency and availability — this directly extends the ACID consistency guarantees discussed in single-node database systems into a much harder problem once data is replicated across multiple machines that can disagree due to network delay or failure.
+
+Consensus
+Consensus algorithms (Paxos, Raft) allow a group of distributed nodes to agree on a single value or sequence of operations even in the presence of node failures, forming the backbone of reliably replicated systems like distributed databases and configuration stores. Raft was designed specifically to be more understandable than Paxos while providing equivalent guarantees, using a leader-election mechanism where one node coordinates writes and replicates them to followers.
+
+Replication and Consistency Models
+Replication copies data across multiple nodes for fault tolerance and read scalability. Strong consistency guarantees all nodes see the same data at the same time, requiring coordination that adds latency. Eventual consistency guarantees that, given enough time without new writes, all replicas will converge to the same value, allowing lower latency and higher availability at the cost of temporarily stale reads — this is the deliberate tradeoff many NoSQL systems make, explicitly choosing availability over strict consistency per the CAP theorem.
+
+Distributed Transactions
+The two-phase commit (2PC) protocol coordinates a transaction across multiple nodes: a coordinator asks all participants to "prepare" (vote yes/no), and only commits on all nodes if every participant votes yes, otherwise it aborts on all nodes — ensuring atomicity across machines, analogous to the atomicity guarantee of a single-node database transaction, but requiring network round-trips and vulnerable to blocking if the coordinator fails mid-protocol.
+
+Load Balancing
+A load balancer distributes incoming requests across multiple backend servers to prevent any single server from becoming a bottleneck, using strategies like round-robin, least-connections, or consistent hashing. Consistent hashing is particularly important for distributed caches and databases because it minimizes the amount of data that must be remapped when a node is added or removed, compared to simple modulo-based hashing which would remap nearly everything.
+
+Fault Tolerance
+Distributed systems assume partial failure is normal, not exceptional. Techniques for fault tolerance include replication (so data survives a node failure), heartbeat monitoring (detecting failed nodes), timeouts and retries with backoff, and circuit breakers (temporarily stopping requests to a failing downstream service to prevent cascading failure across the system).

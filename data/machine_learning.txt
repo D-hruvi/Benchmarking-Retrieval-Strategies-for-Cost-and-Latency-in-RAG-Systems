@@ -1,0 +1,25 @@
+MACHINE LEARNING
+
+Overview
+Machine learning (ML) builds systems that improve at a task by learning patterns from data, rather than being explicitly programmed with rules. The three broad paradigms are supervised learning (learning from labeled examples), unsupervised learning (finding structure in unlabeled data), and reinforcement learning (learning through trial-and-error interaction with an environment, guided by rewards).
+
+Supervised Learning
+In supervised learning, a model learns a mapping from inputs to known outputs. Regression predicts a continuous value (e.g., house price); classification predicts a discrete category (e.g., spam/not spam). Common algorithms include linear regression, logistic regression, decision trees, random forests, support vector machines (SVMs), and k-nearest neighbors (KNN).
+
+Gradient Descent
+Gradient descent is the core optimization algorithm used to train most ML models, including deep neural networks. It iteratively adjusts model parameters in the direction opposite to the gradient of the loss function with respect to those parameters, since the gradient points toward the steepest increase and moving opposite to it decreases the loss. The learning rate controls the step size: too large and the optimization can overshoot or diverge; too small and training is slow and can get stuck in poor local regions. Stochastic Gradient Descent (SGD) estimates the gradient from a small random batch of data rather than the full dataset each step, making it far more scalable to large datasets, at the cost of noisier gradient estimates.
+
+Overfitting and Underfitting
+Overfitting occurs when a model learns the noise and idiosyncrasies of the training data rather than the underlying pattern, so it performs well on training data but poorly on new, unseen data — this typically happens when the model is too complex relative to the amount of training data, effectively "memorizing" instead of "generalizing." Underfitting is the opposite: the model is too simple to capture the underlying pattern, performing poorly on both training and test data. The bias-variance tradeoff formalizes this: high-bias models underfit, high-variance models overfit, and model selection seeks a sweet spot.
+
+Regularization
+Regularization techniques combat overfitting by discouraging model complexity. L2 (Ridge) regularization adds a penalty proportional to the sum of squared weights, shrinking them toward zero without eliminating them. L1 (Lasso) regularization adds a penalty proportional to the sum of absolute weights, which can shrink some weights to exactly zero, effectively performing feature selection. Dropout, used in neural networks, randomly disables a fraction of neurons during each training step, preventing the network from relying too heavily on any single neuron.
+
+Feature Selection and Engineering
+Feature selection chooses the most relevant input variables for a model, which can improve accuracy, reduce overfitting, and speed up training. Filter methods rank features by a statistical criterion independent of the model (e.g., correlation with the target). Wrapper methods evaluate feature subsets using the actual model's performance. Embedded methods perform selection as part of training itself — L1 regularization is a classic embedded method, and greedy forward/backward selection is a simple wrapper-method heuristic that, like greedy algorithms generally, adds or removes one feature at a time based on the locally best improvement without guaranteeing the globally optimal subset.
+
+Model Evaluation
+Cross-validation splits data into multiple folds, training on some and validating on others across multiple rounds, to get a more reliable estimate of how a model generalizes than a single train/test split. A confusion matrix breaks down predictions into true positives, true negatives, false positives, and false negatives, from which precision, recall, F1, and accuracy are computed.
+
+Ensemble Methods
+Ensemble methods combine multiple models to improve performance. Bagging (e.g., Random Forests) trains multiple models on random subsets of data and averages their predictions, reducing variance. Boosting (e.g., XGBoost, AdaBoost) trains models sequentially, each focused on correcting the errors of the previous ones, reducing bias.

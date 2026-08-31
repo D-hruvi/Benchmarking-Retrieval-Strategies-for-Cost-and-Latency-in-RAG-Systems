@@ -1,0 +1,17 @@
+# CPU-only torch wheel index. Without this, pip installs the default
+# CUDA-enabled torch build, which is several GB and will blow past
+# Render's free-tier build time/disk limits for no benefit (there's no
+# GPU on the free tier anyway).
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.5.1
+sentence-transformers==5.7.0
+faiss-cpu==1.14.3
+rank-bm25==0.2.2
+groq==1.7.0
+streamlit==1.62.0
+tiktoken==0.14.0
+pandas==2.2.3
+matplotlib==3.9.2
+numpy==1.26.4
+psutil==6.1.0

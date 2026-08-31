@@ -1,0 +1,25 @@
+ALGORITHMS
+
+Overview
+An algorithm is a finite, well-defined sequence of steps to solve a problem. Algorithm analysis focuses on correctness and efficiency, usually expressed with Big-O notation to describe how running time or memory grows with input size n.
+
+Sorting
+Comparison-based sorts have a theoretical lower bound of O(n log n). Merge sort and heap sort achieve this reliably; quicksort achieves it on average but degrades to O(n^2) in the worst case (e.g., already-sorted input with a naive pivot choice), which is why production quicksort implementations use randomized or median-of-three pivot selection. Insertion sort and bubble sort are O(n^2) but are simple and efficient for small or nearly-sorted arrays. Counting sort and radix sort are non-comparison sorts that achieve O(n+k) time under specific assumptions about the input range.
+
+Searching
+Linear search is O(n) and works on unsorted data. Binary search is O(log n) but requires sorted data; it repeatedly halves the search interval by comparing the target to the middle element.
+
+Greedy Algorithms
+A greedy algorithm builds a solution by always choosing the locally optimal option at each step, without reconsidering previous choices. This works when the problem has the "greedy choice property" — Dijkstra's shortest path algorithm, Huffman coding, and the fractional knapsack problem are classic examples where greedy produces a globally optimal answer. Greedy approaches are attractive because they are typically simple and fast, but they do not guarantee optimality for every problem (e.g., the 0/1 knapsack problem needs dynamic programming, not greedy).
+
+Divide and Conquer
+This paradigm splits a problem into independent subproblems, solves each recursively, and combines the results. Merge sort, quicksort, and the Fast Fourier Transform are classic divide-and-conquer algorithms. The Master Theorem is used to analyze the time complexity of divide-and-conquer recurrences of the form T(n) = aT(n/b) + f(n).
+
+Dynamic Programming
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing (memoizing) results to avoid recomputation. It is preferred over naive recursion whenever a problem exhibits overlapping subproblems and optimal substructure — naive recursive solutions to problems like Fibonacci or the 0/1 knapsack are exponential, while their DP versions run in polynomial time because each subproblem is solved once and reused. DP can be implemented top-down (recursion + memoization) or bottom-up (iterative table filling).
+
+Graph Algorithms
+Dijkstra's algorithm finds shortest paths from a source in a graph with non-negative edge weights, using a priority queue (min-heap) to always expand the closest unvisited vertex, running in O((V+E) log V). Bellman-Ford handles negative edge weights (but not negative cycles) in O(VE). Floyd-Warshall computes all-pairs shortest paths in O(V^3) using dynamic programming. Kruskal's and Prim's algorithms compute a minimum spanning tree; Kruskal's uses a union-find structure and sorts edges greedily, while Prim's grows the tree from a starting vertex.
+
+NP-Completeness
+A problem is in P if it can be solved in polynomial time. A problem is in NP if a proposed solution can be verified in polynomial time. NP-complete problems (e.g., the traveling salesman problem, boolean satisfiability) are the hardest problems in NP — no polynomial-time algorithm is known for them, and if one were found for any NP-complete problem, it would imply P = NP. In practice, NP-complete problems are handled with approximation algorithms, heuristics, or exponential algorithms on small inputs.
