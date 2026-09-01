@@ -23,21 +23,31 @@ EMBEDDING_DIM = 384
 # --------------------------------------------------------------------------
 # Groq LLM
 # --------------------------------------------------------------------------
-# Llama 3.1 8B Instant: $0.05 / 1M input tokens, $0.08 / 1M output tokens.
-# This is Groq's cheapest production text model as of Aug 2026 (verified via
-# web search at build time -- see README for the pricing source). Picked
-# specifically because the whole point of this project is cost tracking,
-# and a cheap model keeps total spend trivial while iterating.
-GROQ_MODEL_NAME = "llama-3.1-8b-instant"
+# openai/gpt-oss-20b: $0.075 / 1M input tokens, $0.30 / 1M output tokens.
+#
+# NOTE: this project originally used llama-3.1-8b-instant, which WAS
+# Groq's cheapest self-serve model as of Aug 2026 pricing checked at
+# build time. On 2026-08-26, Groq moved llama-3.1-8b-instant and
+# llama-3.3-70b-versatile to Enterprise-only "Contact Sales" pricing and
+# dropped them from the self-serve catalog entirely -- calling the old
+# model ID now returns a 404 model_not_found. openai/gpt-oss-20b is the
+# cheapest model still on the self-serve catalog as of this correction
+# (verified via web search). This kind of thing is exactly why
+# GROQ_MODEL_NAME is a single named constant here rather than hardcoded
+# in multiple places: if Groq's catalog changes again, this is the only
+# line that needs to change. If you hit a 404 model_not_found error
+# again in the future, check https://console.groq.com/docs/models for
+# the current self-serve catalog before assuming it's a code bug.
+GROQ_MODEL_NAME = "openai/gpt-oss-20b"
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 
 # Pricing is in USD per token (not per million) so cost math elsewhere
 # doesn't need to remember to divide by 1e6 every time.
-GROQ_PRICE_PER_INPUT_TOKEN = 0.05 / 1_000_000
-GROQ_PRICE_PER_OUTPUT_TOKEN = 0.08 / 1_000_000
+GROQ_PRICE_PER_INPUT_TOKEN = 0.075 / 1_000_000
+GROQ_PRICE_PER_OUTPUT_TOKEN = 0.30 / 1_000_000
 
 # If Groq's pricing changes, update the three constants above and this date.
-GROQ_PRICING_LAST_VERIFIED = "2026-08-31"
+GROQ_PRICING_LAST_VERIFIED = "2026-09-01"
 
 # --------------------------------------------------------------------------
 # Chunking

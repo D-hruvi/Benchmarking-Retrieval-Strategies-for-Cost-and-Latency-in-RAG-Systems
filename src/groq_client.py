@@ -66,6 +66,19 @@ def call_llm(question: str, context_chunks: list) -> LLMCallResult:
         temperature=0.1,  # low temperature: this is a factual-QA benchmark,
         # not a creative task, and low temperature makes answers more
         # reproducible across repeated runs of the same question.
+        reasoning_effort="low",  # openai/gpt-oss-20b is a reasoning model
+        # and defaults to reasoning_effort="medium", which spends extra
+        # output tokens on an internal reasoning pass before answering --
+        # those reasoning tokens are billed as completion tokens, so left
+        # at the default they would inflate this benchmark's cost/latency
+        # numbers for what is a simple factual-QA-over-provided-context
+        # task that doesn't need deep multi-step reasoning. "low" keeps
+        # the cost/latency profile representative of a cheap small-model
+        # workload, which is what this project is actually benchmarking.
+        include_reasoning=False,  # don't bother returning the reasoning
+        # trace in the response at all -- we're not displaying or logging
+        # it, so there's no reason to pay the (small) response-payload
+        # and parsing overhead of including it.
     )
     latency = time.perf_counter() - start
 
