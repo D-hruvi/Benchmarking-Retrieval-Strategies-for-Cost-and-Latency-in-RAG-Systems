@@ -119,6 +119,28 @@ class LoadedIndexes:
     retrieval function is handed."""
 
     def __init__(self):
+        if not (
+            os.path.exists(config.CHUNKS_METADATA_PATH)
+            and os.path.exists(config.FAISS_INDEX_PATH)
+            and os.path.exists(config.BM25_INDEX_PATH)
+        ):
+            # Self-healing fallback: index_store/ is supposed to be built
+            # once locally and committed to the repo (see README), but if
+            # it's missing at runtime -- e.g. it was never committed, or
+            # a hosting platform's build didn't preserve it -- build it
+            # right here instead of crashing. Render's free tier has no
+            # persistent disk between deploys but DOES have full internet
+            # at container startup, and rebuilding from 20 short .txt
+            # files takes seconds, so this is a cheap, safe fallback
+            # rather than a silent failure mode that depends on a human
+            # not forgetting a manual step before every deploy.
+            print(
+                f"index_store/ not found or incomplete at {config.INDEX_DIR} "
+                f"-- building it now from data/ (this happens once per "
+                f"container; takes a few seconds for this corpus size)."
+            )
+            build_indexes()
+
         with open(config.CHUNKS_METADATA_PATH, "r", encoding="utf-8") as f:
             chunks_meta = json.load(f)
         self.chunks = [Chunk(**c) for c in chunks_meta]
