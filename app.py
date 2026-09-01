@@ -54,9 +54,16 @@ mode = st.radio("Mode", ["Single variant", "Compare all 3 side by side"], horizo
 
 if mode == "Single variant":
     variant = st.selectbox("Variant", VALID_VARIANTS)
-    if st.button("Run", type="primary") and query.strip():
+    run_clicked = st.button("Run", type="primary")
+    if run_clicked and not query.strip():
+        st.warning("Type a question above before clicking Run.")
+    elif run_clicked:
         with st.spinner(f"Running {variant}..."):
-            result = answer_question(query, variant, indexes, cache=cache)
+            try:
+                result = answer_question(query, variant, indexes, cache=cache)
+            except Exception as e:
+                st.error(f"The {variant} call failed: {e}")
+                st.stop()
         st.markdown("### Answer")
         st.write(result.answer)
         c1, c2, c3, c4 = st.columns(4)
@@ -75,13 +82,20 @@ if mode == "Single variant":
                      f"before embedding rerank.")
 
 else:
-    if st.button("Run all 3", type="primary") and query.strip():
+    run_clicked = st.button("Run all 3", type="primary")
+    if run_clicked and not query.strip():
+        st.warning("Type a question above before clicking Run.")
+    elif run_clicked:
         cols = st.columns(3)
         for col, variant in zip(cols, VALID_VARIANTS):
             with col:
                 st.markdown(f"#### {variant}")
                 with st.spinner(f"Running {variant}..."):
-                    result = answer_question(query, variant, indexes, cache=cache)
+                    try:
+                        result = answer_question(query, variant, indexes, cache=cache)
+                    except Exception as e:
+                        st.error(f"Failed: {e}")
+                        continue
                 st.write(result.answer)
                 st.metric("Latency", f"{result.total_latency_s:.2f}s")
                 st.metric("Cost", f"${result.cost_usd:.6f}")
